@@ -14,7 +14,7 @@
     ```
 1. Run `geth` console with the docker image
     ```
-    docker run --rm -it ethereum-test
+    docker run --rm --name ethereum-test -it ethereum-test
     ```
 
 ## Test in the console of geth
@@ -30,13 +30,12 @@ eth.mining
 // wait for a while to make some blocks
 
 eth.blockNumber
-eth.getBalance(user1)
-eth.getBalance(user2)
-
+web3.fromWei(eth.getBalance(user1), "ether")
+web3.fromWei(eth.getBalance(user2), "ether")
 
 personal.unlockAccount(user1) // type a passphrase for user1
 tx = eth.sendTransaction({from: user1, to: user2, value: web3.toWei(1, "ether")})
 eth.getTransaction(tx)
-eth.getBalance(user1)
-eth.getBalance(user2)
+web3.fromWei(eth.getBalance(user1), "ether")
+web3.fromWei(eth.getBalance(user2), "ether")
 ```
